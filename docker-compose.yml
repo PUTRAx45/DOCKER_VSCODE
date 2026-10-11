@@ -1,0 +1,23 @@
+services:
+  firebase-emulator:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+      - "8080:8080"
+      - "9099:9099"
+
+  postgres:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: kawansekolah
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
